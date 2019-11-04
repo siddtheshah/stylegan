@@ -9,7 +9,7 @@
 
 import os
 import numpy as np
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 
 from typing import Any, Iterable, List, Union
 
@@ -33,7 +33,7 @@ def is_tf_expression(x: Any) -> bool:
 
 def shape_to_list(shape: Iterable[tf.Dimension]) -> List[Union[int, None]]:
     """Convert a Tensorflow shape to a list of ints."""
-    return [dim.value for dim in shape]
+    return [dim for dim in shape]
 
 
 def flatten(x: TfExpressionEx) -> TfExpression:

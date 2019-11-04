@@ -10,10 +10,12 @@
 import os
 import glob
 import numpy as np
-import tensorflow as tf
+import tensorflow
+import tensorflow.compat.v1 as tf
 import dnnlib
 import dnnlib.tflib as tflib
 
+tf.disable_eager_execution()
 #----------------------------------------------------------------------------
 # Parse individual image from a tfrecords file.
 
@@ -67,6 +69,7 @@ class TFRecordDataset:
         self._cur_lod           = -1
 
         # List tfrecords files and inspect their shapes.
+        print(self.tfrecord_dir)
         assert os.path.isdir(self.tfrecord_dir)
         tfr_files = sorted(glob.glob(os.path.join(self.tfrecord_dir, '*.tfrecords')))
         assert len(tfr_files) >= 1
